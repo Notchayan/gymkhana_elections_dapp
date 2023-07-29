@@ -2,69 +2,80 @@
 pragma solidity >=0.7.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 
-contract Election {
+contract Poll {
+
     struct Voter {
         bool registered;
         bool voted;
     }
 
-    struct Candidate {
+    struct Nominee {
         string name;
-        uint votes;
+        uint count;
     }
 
-    address public electionAdmin;
+    address public pollAdmin;
     mapping(address => Voter) public electorate;
-    Candidate[] public candidates;
-    uint public electionEndTime;
+    Nominee[] public nominees;
+    uint public end;
 
-    constructor(string[] memory candidateNames, uint duration) {
-        electionAdmin = msg.sender;
-        electorate[electionAdmin].registered = true;
-        for (uint i = 0; i < candidateNames.length; i++) {
-            candidates.push(Candidate({name: candidateNames[i], votes: 0}));
+    constructor(string[] memory nomineeNames, uint period) {
+        pollAdmin = msg.sender;
+        electorate[pollAdmin].registered = true;
+        for (uint i = 0; i < nomineeNames.length; i++) {
+            nominees.push(Nominee({name: nomineeNames[i], count: 0}));
         }
-        electionEndTime = block.timestamp + duration;
+        end = block.timestamp + period;
     }
 
-    function registerVoter(address voterAddress) external {
-        require(msg.sender == electionAdmin, "Only the election admin can register voters.");
-        require(!electorate[voterAddress].voted, "Voter already voted.");
-        require(!electorate[voterAddress].registered, "Voter is already registered.");
-        electorate[voterAddress].registered = true;
+    modifier onlyAdmin() {
+        require(msg.sender == pollAdmin, "Only the poll admin can perform this.");
+        _;
     }
 
-    function registerCandidate(string memory candidateName) external {
-        require(msg.sender == electionAdmin, "Only the election admin can register candidates.");
-        candidates.push(Candidate({name: candidateName, votes: 0}));
+    modifier beforePollEnd() {
+        require(block.timestamp <= end, "Polling period is over.");
+        _;
     }
 
-    function castVote(uint firstChoice, uint secondChoice, uint thirdChoice) external {
-        require(block.timestamp <= electionEndTime, "Voting period is over.");
+    modifier afterPollEnd() {
+        require(block.timestamp > end, "Polling is not yet over.");
+        _;
+    }
+
+    function enrolVoter(address voter) external onlyAdmin {
+        require(!electorate[voter].voted, "Voter has already voted.");
+        require(!electorate[voter].registered, "Voter is already registered.");
+        electorate[voter].registered = true;
+    }
+
+    function addNominee(string memory nomineeName) external onlyAdmin {
+        nominees.push(Nominee({name: nomineeName, count: 0}));
+    }
+
+    function vote(uint first, uint second, uint third) external beforePollEnd {
         Voter storage voter = electorate[msg.sender];
         require(voter.registered, "Voter is not registered.");
-        require(!voter.voted, "Voter already cast their vote.");
-        candidates[firstChoice].votes += 5;
-        candidates[secondChoice].votes += 3;
-        candidates[thirdChoice].votes += 1;
+        require(!voter.voted, "Voter has already voted.");
+        nominees[first].count += 5;
+        nominees[second].count += 3;
+        nominees[third].count += 1;
         voter.voted = true;
     }
 
-    function declareWinner() public view returns (string memory) {
-        require(block.timestamp > electionEndTime, "Election is not yet over.");
-        uint maxVotes = 0;
+    function getWinner() public view afterPollEnd returns (string memory) {
+        uint max = 0;
         uint winnerIndex = 0;
-        for (uint i = 0; i < candidates.length; i++) {
-            if (candidates[i].votes > maxVotes) {
-                maxVotes = candidates[i].votes;
+        for (uint i = 0; i < nominees.length; i++) {
+            if (nominees[i].count > max) {
+                max = nominees[i].count;
                 winnerIndex = i;
             }
         }
-        return candidates[winnerIndex].name;
+        return nominees[winnerIndex].name;
     }
 
-    function getResults() public view returns (Candidate[] memory) {
-        return candidates;
-    }   
+    function results() public view returns (Nominee[] memory) {
+        return nominees;
+    }
 }
-
