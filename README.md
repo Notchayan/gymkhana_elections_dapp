@@ -1,55 +1,57 @@
-# Decentralized Gymkhana Election DApp
+# Decentralized Gymkhana Election Software
 
-## Introduction
+## Synopsis
 
-The Decentralized Gymkhana Election DApp is a comprehensive application aimed at democratising Gymkhana elections through blockchain technology. Utilizing the Ethereum blockchain, this DApp provides a secure and transparent platform for participants to elect their SNT Council General Secretary. The election process is facilitated by smart contracts, ensuring an immutable and accountable voting procedure.
+The Decentralized Gymkhana Election Software is an all-inclusive tool that utilizes the Ethereum blockchain to revolutionize the Gymkhana elections. By capitalizing on smart contracts, the software guarantees a safe and transparent mechanism for electing the SNT Council General Secretary. This file elaborates on the software's functionalities, operation, and underlying mechanisms.
 
-This README file offers an in-depth insight into the functionalities, usage, and underlying technologies of the Gymkhana Elections DApp.
+## Characteristics
 
-## Features
+### 1. Electorate Enrolment
 
-### 1. Voter Registration
+Users have the option to link their MetaMask wallet to the software and enlist as voters. The Ethereum address drawn from MetaMask serves as the registration identifier. Enrolment is only permitted to those who haven't yet voted.
 
-Users can connect their MetaMask wallet to the DApp and register as voters. The Ethereum address from MetaMask will be used for registration. Registration is open only for those who have not yet cast their votes.
+### 2. Ballot Submission
 
-### 2. Vote Casting
+Once enrolled, users can support their favored candidates by allocating points based on their preference hierarchy. The points distribution for the first, second, and third choices is 5, 3, and 1 respectively. By hitting the "Submit Ballot" button, votes get logged for the associated candidates.
 
-Registered users can cast votes for their preferred candidates by entering the index numbers of their first, second, and third preferences. Points allocation for preferences are 5, 3, and 1 respectively. Once the "Cast Vote" button is clicked, the votes get registered for the respective candidates.
+### 3. Live Scoreboard
 
-### 3. Current Standings
+Post ballot submission, users have the ability to review the current candidate rankings by selecting the "Refresh Scoreboard" button. This functionality portrays the candidates' points and their live ranks in a structured format.
 
-Post voting, users can view the current standings of candidates by clicking the "Update Standings" button. This feature displays the candidates' scores and their current positions in a tabular layout.
+## Software Operation
 
-## Using the DApp
+### 1. Requirements
 
-### 1. Prerequisites
+Prior to utilizing the software, make sure you've installed the MetaMask browser extension and possess an Ethereum account with sufficient ETH to cover gas costs.
 
-Before accessing the DApp, ensure you have the MetaMask extension installed in your web browser and an Ethereum account with sufficient ETH for gas fees.
+### 2. Software Interaction
 
-### 2. Accessing the DApp
+The software's user interface is available at https://gymkhanaelections.netlify.app/ or by launching index.html from the frontend directory. Hit the "Establish Connection with MetaMask Account" button to link your MetaMask wallet to the software. When MetaMask requests, allow the software to access your Ethereum account.
 
-You can access the DApp frontend hosted at https://gymkhanaelections.netlify.app/ or open index.html from the frontend folder. To connect your MetaMask wallet to the DApp, click the "Connect to MetaMask Account" button. Grant the DApp access to your Ethereum account when prompted by MetaMask.
+### 3. Enrolment
 
-### 3. Registration
+Following successful connection with MetaMask, you'll be taken to the election.html interface. Hit the "Enlist" button to sign up as a voter. Remember, enrolment can only be done once and is not possible post voting.
 
-Once connected to MetaMask, you will be redirected to the election.html page. Click the "Register" button to register as a voter. Registration is a one-time process and cannot be performed after voting.
+### 4. Ballot Submission
 
-### 4. Casting Votes
+Key in the index numbers of your three preferred candidates in the provided fields. Post entering your choices, click the "Submit Ballot" button. Confirm the transaction when prompted by MetaMask. Voting is only permissible once per enlisted account.
 
-Input the index numbers of your top three candidates into the given fields. After entering your preferences, click the "Cast Vote" button. Confirm the transaction on the MetaMask popup. Voting is restricted to once per registered account.
+### 5. Live Scoreboard Review
 
-### 5. Viewing Current Standings
-
-After voting, you can view the current standings by clicking the "Update Standings" button. The updated candidate scores will be shown in a table format.
+Post ballot submission, hit the "Refresh Scoreboard" button to check the current standings. The live updates of candidate points are displayed in a tabular arrangement.
 
 ### 6. Post Voting
 
-For security reasons, it's recommended to disconnect your MetaMask account and refresh the page after casting your vote.
+For your protection, we advise disconnecting your MetaMask account and refreshing the page after submitting your vote.
 
-## Conclusion
+## Final Thoughts
 
-The Decentralized Gymkhana Election DApp offers a secure and transparent platform for users to participate in the election process. With seamless connectivity to MetaMask wallets, easy voter registration, vote casting, and real-time standings, the DApp ensures a user-friendly experience.
+The Decentralized Gymkhana Election Software provides a reliable and clear-cut mechanism for users to engage in the election procedure. With smooth integration with MetaMask wallets, uncomplicated voter enrolment, ballot submission, and real-time scoreboard updates, the software ensures a hassle-free user experience.
 
-The integrity of the election process is preserved through the Ethereum blockchain and smart contracts, making the DApp a trusted tool for conducting Gymkhana elections.
+The Ethereum blockchain and smart contracts preserve the honesty of the election procedure, making the software a dependable instrument for conducting Gymkhana elections.
 
-Please note, the provided code snippets and DApp are for demonstration purposes. In a real-world scenario, considerations for security, voter authentication, vote duplication prevention, and voter anonymity would be critical. The DApp should be thoroughly audited and tested before being deployed in a live environment.
+Please be informed, the supplied code samples and software are meant for illustrative objectives. In a realistic context, significant considerations like security, voter validation, prevention of duplicate voting, and voter secrecy are crucial. The software should be rigorously inspected and experimented before deploying in a live context.
+
+
+https://github.com/Notchayan/gymkhana_elections_dapp/assets/130827975/60d623df-f0c7-4779-88c1-7d25c725b1a5
+
