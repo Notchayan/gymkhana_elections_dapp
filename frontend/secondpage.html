@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type = "module" src = "election.js"></script>
+    <title>Gymkhana Elections</title>
+</head>
+<body>
+    <header>
+        <h1>Gymkhana Elections: General Secretary, SNT Council</h1>
+        <button id="register" class="btn-primary">Register</button>
+    </header>
+
+    <div class="container">
+        <section id="connection-status">
+            <h2 id="user" class="section-heading" >Current Network Status:</h2>
+        </section>
+
+        <section id="candidates-section">
+            <h2 class="section-heading" >Meet the Candidates</h2>
+            <div id="candidates-grid">
+                <!-- Candidate 1 -->
+                <div class="candidate-card">
+                    <img src="https://pclub.in/images/pratham.jpg" alt="Pratham Sahu">
+                    <div>
+                        <h3>PRATHAM SAHU</h3>
+                    </div>
+                </div>
+                <!-- Candidate 2 -->
+                <div class="candidate-card">
+                    <img src="https://pclub.in/images/ridin.jpg" alt="Ridin Datta">
+                    <div>
+                        <h3>RIDIN DATTA</h3>
+                    </div>
+                </div>
+                <!-- Candidate 3 -->
+                <div class="candidate-card">
+                    <img src="https://pclub.in/images/devansh.jpg" alt="Devansh Jain">
+                    <div>
+                        <h3>DEVANSH JAIN</h3>
+                    </div>
+                </div>
+                <!-- Candidate 4 -->
+                <div class="candidate-card">
+                    <img src="https://pclub.in/images/jha.jpg" alt="Rahul Jha">
+                    <div>
+                        <h3>RAHUL JHA</h3>
+                    </div>
+                </div>
+                <!-- other candidate cards go here -->
+            </div>
+        </section>
+
+        <section id="vote-section">
+            <h2 class="section-heading" >Submit Your Vote</h2>
+            <form id="vote-form">
+                <label for="candidate1">1st Preference:</label>
+                <select id="candidate1">
+                    <option value="">--Please choose an option--</option>
+                    <option value="PRATHAM SAHU">PRATHAM SAHU</option>
+                    <option value="RIDIN DATTA">RIDIN DATTA</option>
+                    <option value="DEVANSH JAIN">DEVANSH JAIN</option>
+                    <option value="RAHUL JHA">RAHUL JHA</option>
+                </select>
+                <label for="candidate2">2nd Preference:</label>
+                <select id="candidate2">
+                    <option value="">--Please choose an option--</option>
+                    <option value="PRATHAM SAHU">PRATHAM SAHU</option>
+                    <option value="RIDIN DATTA">RIDIN DATTA</option>
+                    <option value="DEVANSH JAIN">DEVANSH JAIN</option>
+                    <option value="RAHUL JHA">RAHUL JHA</option>
+                </select>
+                <label for="candidate3">3rd Preference:</label>
+                <select id="candidate3">
+                    <option value="">--Please choose an option--</option>
+                    <option value="PRATHAM SAHU">PRATHAM SAHU</option>
+                    <option value="RIDIN DATTA">RIDIN DATTA</option>
+                    <option value="DEVANSH JAIN">DEVANSH JAIN</option>
+                    <option value="RAHUL JHA">RAHUL JHA</option>
+                </select>
+                <button id="castVote" class="btn-primary">Cast Vote</button>
+            </form>
+        </section>
+
+        <section id="results-section">
+            <h2>Current Standings</h2>
+            <button id="winningCandidate" class="btn-primary">Update Standings</button>
+            <div id="results-table"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById("vote-form").addEventListener("submit", function(event){
+            var preference1 = document.getElementById('candidate1').value;
+            var preference2 = document.getElementById('candidate2').value;
+            var preference3 = document.getElementById('candidate3').value;
+            
+            if (preference1 === preference2 || preference1 === preference3 || preference2 === preference3){
+                event.preventDefault();
+                window.alert("Each candidate must be unique among preferences.");
+            }
+        });
+    </script>
+</body>
+</html>
