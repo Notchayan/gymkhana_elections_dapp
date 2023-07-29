@@ -1,37 +1,43 @@
 import { ethers } from "./ethers.js";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+class WalletConnector {
+  constructor(provider) {
+    this.provider = provider;
+  }
 
-const isMetaMaskInstalled = () => {
-    return (typeof window.ethereum !== 'undefined') ? true : false;
-}
+  isWalletInstalled() {
+    return typeof window.ethereum !== 'undefined';
+  }
 
-const requestAccounts = async () => {
+  async requestAccounts() {
     try {
-        await provider.send("eth_requestAccounts", []);
+      await this.provider.send("eth_requestAccounts", []);
     } catch (error) {
-        console.error("Request to access accounts failed:", error);
-        throw error;
+      console.error("Failed to access user's accounts:", error);
+      throw error;
     }
-}
+  }
 
-const navigateToElectionPage = () => {
-    window.location.href="election.html";
-}
+  redirectTo(page) {
+    window.location.href = page;
+  }
 
-const initializeConnection = async () => {
-    if (isMetaMaskInstalled()) {
-        console.log('MetaMask is installed!');
-        try {
-            await requestAccounts();
-            console.log("Sucessfully connected to MetaMask Wallet.")
-            navigateToElectionPage();
-        } catch (error) {
-            console.error("Failed to connect to MetaMask Wallet.");
-        }
+  async connect() {
+    if (this.isWalletInstalled()) {
+      console.log('Wallet is installed!');
+      try {
+        await this.requestAccounts();
+        console.log("Successfully connected to the wallet.")
+        this.redirectTo("secondpage.html");
+      } catch (error) {
+        console.error("Failed to connect to the wallet.");
+      }
     } else {
-        console.log('MetaMask is not installed.');
+      console.log('Wallet is not installed.');
     }
+  }
 }
 
-document.getElementById('connect').addEventListener('click', initializeConnection);
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const connector = new WalletConnector(provider);
+document.getElementById('connect').addEventListener('click', () => connector.connect());
