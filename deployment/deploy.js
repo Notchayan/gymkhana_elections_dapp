@@ -1,20 +1,22 @@
-const { ethers } = require('hardhat');
+const hre = require("hardhat");
 
 async function main() {
-  await ethers.getContractFactory('Ballot');
-  const [deployerAccount] = await ethers.getSigners();
-  console.log('Deploying the Ballot contract with the account:', deployerAccount.address);
-  const contestantNames = ['PRATHAM SAHU', 'DEVANSH JAIN', 'RAHUL JHA','RIDIN DATTA'];
+  const [deployer] = await hre.ethers.getSigners();
+  console.log(`Starting deployment from account: ${deployer.address}`);
 
-  const Ballot = await ethers.getContractFactory('Ballot');
-  const ballot = await Ballot.deploy(contestantNames);
-  await ballot.deployed();
-  console.log('Ballot contract deployed to:', ballot.address);
+  const contestants = ['PRATHAM SAHU', 'DEVANSH JAIN', 'RAHUL JHA','RIDIN DATTA'];
+  const PollContractFactory = await hre.ethers.getContractFactory("Poll");
+  
+  console.log("Deploying the contract...");
+  const poll = await PollContractFactory.deploy(contestants);
+  await poll.deployTransaction.wait();
+  
+  console.log(`Poll contract has been deployed to: ${poll.address}`);
 }
 
 main()
   .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
+  .catch(err => {
+    console.error(err);
     process.exit(1);
   });
