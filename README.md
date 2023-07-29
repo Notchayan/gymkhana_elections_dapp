@@ -24,11 +24,7 @@ Post ballot submission, users have the ability to review the current candidate r
 
 Prior to utilizing the software, make sure you've installed the MetaMask browser extension and possess an Ethereum account with sufficient ETH to cover gas costs.
 
-### 2. Software Interaction
-
-The software's user interface is available at https://gymkhanaelections.netlify.app/ or by launching index.html from the frontend directory. Hit the "Establish Connection with MetaMask Account" button to link your MetaMask wallet to the software. When MetaMask requests, allow the software to access your Ethereum account.
-
-### 3. Enrolment
+### 2. Enrolment
 
 Following successful connection with MetaMask, you'll be taken to the election.html interface. Hit the "Enlist" button to sign up as a voter. Remember, enrolment can only be done once and is not possible post voting.
 
