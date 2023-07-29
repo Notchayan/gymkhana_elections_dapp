@@ -28,15 +28,15 @@ Prior to utilizing the software, make sure you've installed the MetaMask browser
 
 Following successful connection with MetaMask, you'll be taken to the election.html interface. Hit the "Enlist" button to sign up as a voter. Remember, enrolment can only be done once and is not possible post voting.
 
-### 4. Ballot Submission
+### 3. Ballot Submission
 
 Key in the index numbers of your three preferred candidates in the provided fields. Post entering your choices, click the "Submit Ballot" button. Confirm the transaction when prompted by MetaMask. Voting is only permissible once per enlisted account.
 
-### 5. Live Scoreboard Review
+### 4. Live Scoreboard Review
 
 Post ballot submission, hit the "Refresh Scoreboard" button to check the current standings. The live updates of candidate points are displayed in a tabular arrangement.
 
-### 6. Post Voting
+### 5. Post Voting
 
 For your protection, we advise disconnecting your MetaMask account and refreshing the page after submitting your vote.
 
